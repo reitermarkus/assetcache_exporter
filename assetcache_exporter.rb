@@ -81,7 +81,7 @@ metrics = {
     'assetcache_start_time_seconds',
     'Unix time of when the service was started',
   ) => lambda { |result|
-    [[DateTime.parse(result.fetch('TotalBytesAreSince')).to_time.to_f, {}]]
+    [[DateTime.parse(result.fetch('TotalBytesAreSince')).to_time.to_i, {}]]
   },
   PrometheusExporter::Metric::Counter.new(
     'assetcache_bytes_dropped',
