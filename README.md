@@ -1,4 +1,4 @@
-# assetcache-exporter
+# assetcache_exporter
 
 Prometheus exporter for macOS AssetCache
 
