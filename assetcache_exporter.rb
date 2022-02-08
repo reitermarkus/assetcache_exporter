@@ -77,11 +77,11 @@ metrics = {
   ) => lambda { |result|
     [[result.fetch('PersonalCacheUsed'), {}]]
   },
-  PrometheusExporter::Metric::Counter.new(
-    'assetcache_uptime',
-    'time in seconds since AssetCache service was started',
+  PrometheusExporter::Metric::Gauge.new(
+    'assetcache_start_time_seconds',
+    'Unix time of when the service was started',
   ) => lambda { |result|
-    [[(Time.now - DateTime.parse(result.fetch('TotalBytesAreSince')).to_time).to_i, {}]]
+    [[DateTime.parse(result.fetch('TotalBytesAreSince')).to_time.to_f, {}]]
   },
   PrometheusExporter::Metric::Counter.new(
     'assetcache_bytes_dropped',
