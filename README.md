@@ -17,7 +17,7 @@ brew services start assetcache-exporter
 
 ## Scrape Configuration
 
-```sh
+```yaml
 - job_name: assetcache
   static_configs:
     - targets:
