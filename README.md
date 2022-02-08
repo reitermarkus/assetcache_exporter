@@ -6,7 +6,7 @@ Prometheus exporter for macOS AssetCache
 
 ```sh
 brew tap reitermarkus/tap
-brew install assetcache-exporter
+brew install assetcache-exporter --HEAD
 ```
 
 ## Service
