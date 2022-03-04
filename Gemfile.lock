@@ -5,7 +5,7 @@ GEM
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
-    prometheus_exporter (1.0.1)
+    prometheus_exporter (2.0.2)
       webrick
     rainbow (3.1.1)
     regexp_parser (2.2.0)
@@ -29,7 +29,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  prometheus_exporter (~> 1.0)
+  prometheus_exporter (~> 2.0)
   rubocop (~> 1.25)
 
 BUNDLED WITH
