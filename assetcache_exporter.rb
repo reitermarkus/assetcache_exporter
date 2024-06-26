@@ -142,7 +142,7 @@ loop do
   server_guid = result.fetch('ServerGUID')
 
   metrics.each do |metric, resolver|
-    resolver.call(result).each do |*args, **options|
+    resolver.call(result).each do |args, options|
       metric.observe(*args, **options, server_guid: server_guid)
     end
   end
