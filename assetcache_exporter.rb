@@ -10,8 +10,19 @@ require 'prometheus_exporter/server'
 require 'prometheus_exporter/client'
 require 'prometheus_exporter/instrumentation'
 
-server = PrometheusExporter::Server::WebServer.new(bind: '0.0.0.0', port: ENV.fetch('PORT', 9923))
+port = ENV.fetch('PORT', 9923)
+puts "Starting exporter on port #{port}."
+server = PrometheusExporter::Server::WebServer.new(bind: '0.0.0.0', port: port)
 server.start
+
+running = true
+
+Signal.trap("INT") do
+  running = false
+end
+Signal.trap("TERM") do
+  running = false
+end
 
 PrometheusExporter::Client.default = PrometheusExporter::LocalClient.new(collector: server.collector)
 
@@ -132,7 +143,7 @@ def asset_cache_status
   JSON.parse(out)
 end
 
-loop do
+while running
   status = asset_cache_status
 
   next sleep 5 if status.nil?
@@ -149,3 +160,6 @@ loop do
 
   sleep 5
 end
+
+puts "Stopping exporter."
+server.stop
